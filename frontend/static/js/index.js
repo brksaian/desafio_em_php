@@ -1,10 +1,10 @@
 import Dashboard from "./views/Dashboard.js";
-import Posts from "./views/Posts.js";
-import PostView from "./views/PostView.js";
-import Settings from "./views/Settings.js";
 import Login from "./views/Login.js";
 import CriarLogin from "./views/CriarLogin.js";
 import CadastroClientes from "./views/CadastroClientes.js";
+import SemLogin from "./views/SemLogin.js";
+
+var logado = false;
 
 const pathToRegex = path => new RegExp("^" + path.replace(/\//g, "\\/").replace(/:\w+/g, "(.+)") + "$");
 
@@ -25,9 +25,7 @@ const navigateTo = url => {
 const router = async () => {
     const routes = [
         { path: "/", view: Dashboard },
-        { path: "/posts", view: Posts },
-        { path: "/posts/:id", view: PostView },
-        { path: "/settings", view: Settings },
+        { path: "/noLogon", view: SemLogin },
         { path: "/Login", view: Login },
         { path: "/NovoUsuario", view: CriarLogin },
         { path: "/NovoCliente", view: CadastroClientes },
@@ -49,7 +47,12 @@ const router = async () => {
             result: [location.pathname]
         };
     }
-
+    if(!logado && (match.route.path != '/' && match.route.path != '/Login')){
+        match = {
+            route: routes[1],
+            result: [location.pathname]
+        };
+    }
     const view = new match.route.view(getParams(match));
 
     document.querySelector("#app").innerHTML = await view.getHtml();

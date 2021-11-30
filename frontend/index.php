@@ -12,9 +12,9 @@
 </head>
 <body>
     <nav class="nav">
-        <a href="/" class="nav__link" data-link>Dashboard</a>
-        <a href="/posts" class="nav__link" data-link>Posts</a>
-        <a href="/settings" class="nav__link" data-link>Settings</a>
+        <a href="/" class="nav__link" data-link>Home</a>
+        <a href="/NovoCliente" class="nav__link" data-link>Adicionar cliente</a>
+        <a href="/NovoUsuario" class="nav__link" data-link>Adicionar usuario</a>
         <a href="/Login" class="nav__link" data-link>Login</a>
     </nav>
     <div id="app"></div>
